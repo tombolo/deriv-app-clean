@@ -1,6 +1,8 @@
 import { initSurvicate } from '../public-path';
 import React from 'react';
-import { TStores } from '@deriv/stores/types';
+// import { TStores } from '@deriv/stores/types';
+// import type { TStores } from '../types'; // Update this path to the correct location of TStores type
+import type { TStores } from '@deriv/stores/types'; // Update this path if needed to the actual export location
 import type { TWebSocket } from 'Types';
 import AppContent from './app-content';
 import DBotProviders from './dbot-providers';
@@ -22,6 +24,10 @@ const originToDomainMap = {
 };
 
 const App = ({ passthrough }: TAppProps) => {
+    if (!passthrough) {
+        // Optionally render a fallback UI or throw a clear error
+        return <div>App initialization error: missing passthrough prop.</div>;
+    }
     // Extract the correct domain based on the current origin
     const targetDomain = originToDomainMap[window.location.host as keyof typeof originToDomainMap];
 
