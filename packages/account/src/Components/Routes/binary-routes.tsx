@@ -22,17 +22,7 @@ const BinaryRoutes = observer((props: TBinaryRoutes) => {
         >
             <Switch>
                 <Route exact path="/" render={() => <Redirect to="/bot" />} />
-                <Route
-                    path="/bot/"
-                    render={props => (
-                        <Redirect
-                            to={{
-                                pathname: "/bot",
-                                search: props.location.search,
-                            }}
-                        />
-                    )}
-                />
+                <Route exact path="/bot/" render={() => <Redirect to="/bot" />} />
                 {getRoutesConfig().map((route: TRoute, idx: number) => (
                     <RouteWithSubRoutes key={`${idx}_${current_language}`} {...route} {...props} />
                 ))}
